@@ -116,7 +116,6 @@ public final class Constants {
 
   public static final class OIConstants {
     public static final int kDriverControllerPort = 0;
-    public static final int kDriverControllerPort1 = 1;
     public static final double kDriveDeadband = 0.05;
   }
 
@@ -140,7 +139,8 @@ public final class Constants {
   }
 
   public static final class VisionConstants {
-    public static final String USB_CAMERA_NAME = "main";
+    public static final String USB_CAMERA1_NAME = "Front camera (color)";
+    public static final String USB_CAMERA2_NAME = "Back camera";
     public static final double CAMERA_HEIGHT_METERS = 1.0;
     public static final double TARGET_HEIGHT_METERS = 1.0;
     public static final double CAMERA_PITCH_RADIANS = 0;
