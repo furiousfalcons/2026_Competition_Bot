@@ -12,13 +12,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OIConstants;
-import frc.robot.commands.Autos;
+import frc.robot.commands.AutoAlignTurret;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Turret;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -30,6 +30,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final Turret m_turret = new Turret();
+  private final AutoAlignTurret alignTurret = new AutoAlignTurret(m_turret);
   private final SendableChooser<Command> autoChooser;
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -53,10 +55,11 @@ public class RobotContainer {
                   -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
                   true, true),
               m_robotDrive));
-              new JoystickButton(m_driverController, Button.kR3.value)
-              .whileTrue(new RunCommand( () -> m_robotDrive.setX(), m_robotDrive));
+              //new JoystickButton(m_driverController, Button.kR3.value)
+              //.whileTrue(new RunCommand( () -> m_robotDrive.setX(), m_robotDrive));
               
     autoChooser = AutoBuilder.buildAutoChooser();
+    autoChooser.addOption("Auto Align", alignTurret);
     SmartDashboard.putData("Auto Mode", autoChooser);
     
   }
@@ -86,6 +89,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return autoChooser.getSelected();
+    return alignTurret;
   }
 }
