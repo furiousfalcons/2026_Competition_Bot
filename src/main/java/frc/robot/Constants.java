@@ -139,8 +139,10 @@ public final class Constants {
   }
 
   public static final class VisionConstants {
-    public static final String USB_CAMERA1_NAME = "Front camera (color)";
+    public static final String USB_CAMERA1_NAME = "CameraBad";
     public static final String USB_CAMERA2_NAME = "Back camera";
+    public static final String USB_CAMERA3_NAME = "";
+    public static final String USB_CAMERA4_NAME = "";
     public static final double CAMERA_HEIGHT_METERS = 1.0;
     public static final double TARGET_HEIGHT_METERS = 1.0;
     public static final double CAMERA_PITCH_RADIANS = 0;
