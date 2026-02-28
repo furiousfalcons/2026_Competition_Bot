@@ -10,6 +10,7 @@ public class Intake extends SubsystemBase {
 
   private final SparkMax intakeOutputMotor;
   private final SparkMax intakeDownMotor;
+  private final double intakeSpeed = 0.5;
 
   public Intake() {
     intakeDownMotor = new SparkMax(
@@ -26,8 +27,8 @@ public class Intake extends SubsystemBase {
     intakeDownMotor.set(0.0);
   }
 
-  public void runIntake(double speed) {
-    intakeOutputMotor.set(speed);
+  public void runIntake() {
+    intakeOutputMotor.set(intakeSpeed);
   }
 
   public void stopIntake() {

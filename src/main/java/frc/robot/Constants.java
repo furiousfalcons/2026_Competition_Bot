@@ -25,6 +25,8 @@ import edu.wpi.first.wpilibj.RobotBase;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+  public static final int INTAKEOUTPUT_MOTOR_ID = 13;
+  public static final int INTAKE_DOWN_MOTOR_ID = 10;
 
     
   public static final class DriveConstants {
