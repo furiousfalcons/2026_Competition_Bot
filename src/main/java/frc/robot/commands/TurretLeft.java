@@ -3,16 +3,16 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Turret;
 
-public class AutoAlignTurret extends Command {
+public class TurretLeft extends Command {
 
-    private final Turret turret;
+  private final Turret turret;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public AutoAlignTurret(Turret subsystem) {
+  public TurretLeft(Turret subsystem) {
     turret = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
@@ -20,12 +20,13 @@ public class AutoAlignTurret extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    turret.turretAutoAlign();
+    turret.turretLeft(); // why is this in execute and not initialize like the kitbot TT
   }
 
   // Called once the command ends or is interrupted.

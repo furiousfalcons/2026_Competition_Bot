@@ -14,10 +14,18 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.AutoAlignHood;
 import frc.robot.commands.AutoAlignTurret;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.HoodDown;
+import frc.robot.commands.HoodUp;
+import frc.robot.commands.Shoot;
+import frc.robot.commands.TurretLeft;
+import frc.robot.commands.TurretRight;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.HoodSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.Turret;
 
 /**
@@ -31,12 +39,18 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final Turret m_turret = new Turret();
+  private final HoodSubsystem m_hood = new HoodSubsystem();
+  private final ShooterSubsystem m_shooter = new ShooterSubsystem();
+
+
   private final AutoAlignTurret alignTurret = new AutoAlignTurret(m_turret);
   private final SendableChooser<Command> autoChooser;
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
       new CommandXboxController(OIConstants.kDriverControllerPort);
+  private final CommandXboxController m_operatorController =
+      new CommandXboxController(OIConstants.kOperatorControllerPort); 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -53,7 +67,7 @@ public class RobotContainer {
                   -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband),
                   -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband),
                   -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
-                  true, true),
+                  false, true),
               m_robotDrive));
               //new JoystickButton(m_driverController, Button.kR3.value)
               //.whileTrue(new RunCommand( () -> m_robotDrive.setX(), m_robotDrive));
@@ -80,7 +94,20 @@ public class RobotContainer {
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
-    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+    //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+
+    m_driverController.leftBumper().whileTrue(new HoodUp(m_hood));
+    m_driverController.rightBumper().whileTrue(new HoodDown(m_hood));
+    m_driverController.y().whileTrue(new AutoAlignHood(m_hood));
+
+    m_operatorController.x().whileTrue(new TurretLeft(m_turret));
+    m_operatorController.b().whileTrue(new TurretRight(m_turret));
+    m_operatorController.a().whileTrue(new AutoAlignTurret(m_turret));
+
+    m_driverController.rightBumper().whileTrue(new Shoot(m_shooter));
+
+
+
   }
 
   /**

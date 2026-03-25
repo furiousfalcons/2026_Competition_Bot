@@ -51,15 +51,15 @@ public final class Constants {
     public static final double kBackRightChassisAngularOffset = Math.PI / 2;
 
     // SPARK MAX CAN IDs
-    public static final int kFrontLeftDrivingCanId = 6;
+    public static final int kFrontLeftDrivingCanId = 1;
     public static final int kRearLeftDrivingCanId = 2;
-    public static final int kFrontRightDrivingCanId = 1;
-    public static final int kRearRightDrivingCanId = 8;
+    public static final int kFrontRightDrivingCanId = 3;
+    public static final int kRearRightDrivingCanId = 4;
 
-    public static final int kFrontLeftTurningCanId = 12;
-    public static final int kRearLeftTurningCanId = 3;
-    public static final int kFrontRightTurningCanId = 5;
-    public static final int kRearRightTurningCanId = 7;
+    public static final int kFrontLeftTurningCanId = 5;
+    public static final int kRearLeftTurningCanId = 6;
+    public static final int kFrontRightTurningCanId = 7;
+    public static final int kRearRightTurningCanId = 8;
 
     // public static final int 
 
@@ -117,6 +117,8 @@ public final class Constants {
   public static final class OIConstants {
     public static final int kDriverControllerPort = 0;
     public static final double kDriveDeadband = 0.05;
+    public static final int kOperatorControllerPort = 1;
+
   }
 
   public static final class AutoConstants {
@@ -144,6 +146,25 @@ public final class Constants {
     public static final double CAMERA_HEIGHT_METERS = 1.0;
     public static final double TARGET_HEIGHT_METERS = 1.0;
     public static final double CAMERA_PITCH_RADIANS = 0;
+  }
+
+  public static final class SubsystemConstants{
+    public static final double turretSpeed = 0.5;
+    public static final double hoodSpeed = 0.5;
+    public static final int hoodID = 9;
+    public static final int turretID = 10;
+    public static final int shooterID = 11;
+    public static final int indexerID = 12;
+    public static final int kickerID = 13;
+
+    public static final int shooterSpeed = 1;
+    public static final int indexerSpeed = 1;
+    public static final int kickerSpeed = 1;
+
+
+
+
+
   }
   
 
