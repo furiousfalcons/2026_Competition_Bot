@@ -23,6 +23,8 @@ public class ShooterSubsystem extends SubsystemBase {
     SparkMax shooterMotor;
     SparkMax kickerMotor;
     SparkMax indexerMotor;
+    RelativeEncoder shooterEncoder;
+    
 
     //
 
@@ -49,7 +51,17 @@ public class ShooterSubsystem extends SubsystemBase {
 
     public void shoot(){
 
-        shooterMotor.set(Constants.SubsystemConstants.shooterSpeed);
+        double idealSpeed = Constants.SubsystemConstants.shooterSpeed;
+        double horizontalDistance = 1;
+        double verticalDistance = 1;
+        double calculatedSpeed = (9.80665*Math.pow(horizontalDistance, 2))/((2*Math.pow(Math.cos(50), 2))*(horizontalDistance*Math.tan(50)-verticalDistance));
+        //calculatedSpeed = calculatedSpeed/(2*Math.PI*)
+        
+        PIDController speedController = new PIDController(0.01, 0, 0);
+        double speed = speedController.calculate(shooterEncoder.getVelocity(), idealSpeed);
+        shooterMotor.set(speed);
+
+
         kickerMotor.set(Constants.SubsystemConstants.kickerSpeed);
         indexerMotor.set(Constants.SubsystemConstants.indexerSpeed);
 

@@ -48,7 +48,7 @@ public class DriveSubsystem extends SubsystemBase {
   private final MAXSwerveModule m_frontLeft = new MAXSwerveModule(
     DriveConstants.kFrontLeftDrivingCanId,
     DriveConstants.kFrontLeftTurningCanId,
-    DriveConstants.kFrontLeftChassisAngularOffset);
+    DriveConstants.kFrontRightChassisAngularOffset);
 
 private final MAXSwerveModule m_frontRight = new MAXSwerveModule(
     DriveConstants.kFrontRightDrivingCanId,
@@ -63,7 +63,7 @@ private final MAXSwerveModule m_rearLeft = new MAXSwerveModule(
 private final MAXSwerveModule m_rearRight = new MAXSwerveModule(
     DriveConstants.kRearRightDrivingCanId,
     DriveConstants.kRearRightTurningCanId,
-    DriveConstants.kBackRightChassisAngularOffset);
+    DriveConstants.kBackLeftChassisAngularOffset);
 
     private final ADIS16448_IMU m_gyro = new ADIS16448_IMU();
 

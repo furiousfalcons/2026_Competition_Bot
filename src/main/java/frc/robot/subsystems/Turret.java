@@ -29,7 +29,7 @@ public class Turret extends SubsystemBase {
     //
 
     public Turret(){
-        turretMotor = new SparkMax(7, SparkLowLevel.MotorType.kBrushless);
+        turretMotor = new SparkMax(Constants.SubsystemConstants.turretID, SparkLowLevel.MotorType.kBrushless);
         turretEncoder = turretMotor.getEncoder();
 
         pidController = new PIDController(0.11, 0.0, 0.0);
