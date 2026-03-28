@@ -154,11 +154,11 @@ public final class Constants {
     public static final int hoodID = 9;
     public static final int turretID = 10;
     public static final int shooterID = 11;
-    public static final int indexerID = 12;
+    //public static final int indexerID = 12;
     public static final int kickerID = 13;
 
     public static final double shooterSpeed = 1;
-    public static final double indexerSpeed = 0.35;
+    //public static final double indexerSpeed = 0.35;
     public static final double kickerSpeed = 1;
 
     public static double slow_speed=0.75;

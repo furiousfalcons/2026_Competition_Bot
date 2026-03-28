@@ -10,6 +10,7 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 
+import org.littletonrobotics.junction.Logger;
 import org.photonvision.PhotonCamera;
 import org.photonvision.targeting.PhotonPipelineResult;
 
@@ -32,7 +33,7 @@ public class ShooterSubsystem extends SubsystemBase {
     public ShooterSubsystem(){
         shooterMotor = new SparkMax(Constants.SubsystemConstants.shooterID, SparkLowLevel.MotorType.kBrushless);
         kickerMotor = new SparkMax(Constants.SubsystemConstants.kickerID, SparkLowLevel.MotorType.kBrushless);
-        indexerMotor = new SparkMax(Constants.SubsystemConstants.indexerID, SparkLowLevel.MotorType.kBrushless);
+        //indexerMotor = new SparkMax(Constants.SubsystemConstants.indexerID, SparkLowLevel.MotorType.kBrushless);
 
         SmartDashboard.putNumber("Slow speed", Constants.SubsystemConstants.slow_speed);
         SmartDashboard.putNumber("Fast speed", Constants.SubsystemConstants.fast_speed);
@@ -44,12 +45,14 @@ public class ShooterSubsystem extends SubsystemBase {
         config.smartCurrentLimit(40);
         shooterMotor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         kickerMotor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-        indexerMotor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        //indexerMotor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
        
     }
 
     public void periodic(){
+        SmartDashboard.putNumber("I", shooterMotor.getOutputCurrent());
 
+        //Logger.recordOutput("Current", shooterMotor.getOutputCurrent());
     }    
 
     public void shoot(){
@@ -65,7 +68,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
 
         kickerMotor.set(Constants.SubsystemConstants.kickerSpeed);
-        indexerMotor.set(Constants.SubsystemConstants.indexerSpeed);
+        //indexerMotor.set(Constants.SubsystemConstants.indexerSpeed);
 
     }
     public void shoot(double speed){
@@ -81,7 +84,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
 
         kickerMotor.set(Constants.SubsystemConstants.kickerSpeed);
-        indexerMotor.set(Constants.SubsystemConstants.indexerSpeed);
+        //indexerMotor.set(Constants.SubsystemConstants.indexerSpeed);
 
     }
     public void slowShoot(){
@@ -97,7 +100,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
 
         kickerMotor.set(Constants.SubsystemConstants.kickerSpeed);
-        indexerMotor.set(Constants.SubsystemConstants.indexerSpeed);
+        //indexerMotor.set(Constants.SubsystemConstants.indexerSpeed);
 
     }
 
@@ -105,7 +108,7 @@ public class ShooterSubsystem extends SubsystemBase {
     public void shootStop(){
         shooterMotor.set(0);
         kickerMotor.set(0);
-        indexerMotor.set(0);
+        //indexerMotor.set(0);
     }
 
 }
