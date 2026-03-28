@@ -14,19 +14,11 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OIConstants;
-import frc.robot.commands.AutoAlignHood;
-import frc.robot.commands.AutoAlignTurret;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.HoodDown;
-import frc.robot.commands.HoodUp;
 import frc.robot.commands.Shoot;
-import frc.robot.commands.TurretLeft;
-import frc.robot.commands.TurretRight;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.HoodSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.subsystems.Turret;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -38,12 +30,12 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
-  private final Turret m_turret = new Turret();
-  private final HoodSubsystem m_hood = new HoodSubsystem();
+  //private final Turret m_turret = new Turret();
+  //private final HoodSubsystem m_hood = new HoodSubsystem();
   private final ShooterSubsystem m_shooter = new ShooterSubsystem();
 
 
-  private final AutoAlignTurret alignTurret = new AutoAlignTurret(m_turret);
+  //private final AutoAlignTurret alignTurret = new AutoAlignTurret(m_turret);
   private final SendableChooser<Command> autoChooser;
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -73,7 +65,7 @@ public class RobotContainer {
               //.whileTrue(new RunCommand( () -> m_robotDrive.setX(), m_robotDrive));
               
     autoChooser = AutoBuilder.buildAutoChooser();
-    autoChooser.addOption("Auto Align", alignTurret);
+    //autoChooser.addOption("Auto Align", alignTurret);
     SmartDashboard.putData("Auto Mode", autoChooser);
     
   }
@@ -96,13 +88,13 @@ public class RobotContainer {
     // cancelling on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
-    m_driverController.leftBumper().whileTrue(new HoodUp(m_hood));
-    m_driverController.rightBumper().whileTrue(new HoodDown(m_hood));
-    m_driverController.y().whileTrue(new AutoAlignHood(m_hood));
+    // m_driverController.leftBumper().whileTrue(new HoodUp(m_hood));
+    // m_driverController.rightBumper().whileTrue(new HoodDown(m_hood));
+    // m_driverController.y().whileTrue(new AutoAlignHood(m_hood));
 
-    m_operatorController.x().whileTrue(new TurretLeft(m_turret));
-    m_operatorController.b().whileTrue(new TurretRight(m_turret));
-    m_operatorController.a().whileTrue(new AutoAlignTurret(m_turret));
+    // m_operatorController.x().whileTrue(new TurretLeft(m_turret));
+    // m_operatorController.b().whileTrue(new TurretRight(m_turret));
+    // m_operatorController.a().whileTrue(new AutoAlignTurret(m_turret));
 
     m_driverController.rightBumper().whileTrue(new Shoot(m_shooter));
 
@@ -116,6 +108,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return alignTurret;
+    //return alignTurret;
+    return autoChooser.getSelected();
   }
 }
