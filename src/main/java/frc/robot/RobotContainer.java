@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.Shoot;
+import frc.robot.commands.SlowShoot;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -96,7 +97,8 @@ public class RobotContainer {
     // m_operatorController.b().whileTrue(new TurretRight(m_turret));
     // m_operatorController.a().whileTrue(new AutoAlignTurret(m_turret));
 
-    m_driverController.rightBumper().whileTrue(new Shoot(m_shooter));
+    m_operatorController.rightBumper().whileTrue(new Shoot(m_shooter));
+    m_operatorController.leftBumper().whileTrue(new SlowShoot(m_shooter));
 
 
 

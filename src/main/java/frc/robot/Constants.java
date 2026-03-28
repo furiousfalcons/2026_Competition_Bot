@@ -157,9 +157,12 @@ public final class Constants {
     public static final int indexerID = 12;
     public static final int kickerID = 13;
 
-    public static final int shooterSpeed = 1;
-    public static final int indexerSpeed = 1;
-    public static final int kickerSpeed = 1;
+    public static final double shooterSpeed = 1;
+    public static final double indexerSpeed = 0.35;
+    public static final double kickerSpeed = 1;
+
+    public static double slow_speed=0.75;
+    public static double fast_speed=1;
 
 
 

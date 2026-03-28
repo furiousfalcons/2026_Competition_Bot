@@ -1,11 +1,12 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class Shoot extends Command {
+public class SlowShoot extends Command {
 
   private final ShooterSubsystem shooter;
 
@@ -14,25 +15,24 @@ public class Shoot extends Command {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public Shoot(ShooterSubsystem subsystem) {
+  public SlowShoot(ShooterSubsystem subsystem) {
     shooter = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
-
+  
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooter
+shooter
         .shoot(
-            SmartDashboard.getNumber("Fast Speed", Constants.SubsystemConstants.fast_speed));    
-
-    }
+            SmartDashboard.getNumber("Slow Speed", Constants.SubsystemConstants.slow_speed));    }
 
   // Called once the command ends or is interrupted.
   @Override
